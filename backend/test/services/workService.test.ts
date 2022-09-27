@@ -10,7 +10,7 @@ import faker from 'faker'
 import WorkExternalLink from '../../src/types/WorkExternalLink'
 import WORK_EXTERNAL_LINK from '../../src/enums/WORK_EXTERNAL_LINK'
 import workExternalLinksDatabaseService from '../../src/database/services/workExternalLinksDatabaseService'
-import Work from "../../src/types/Work";
+import Work from '../../src/types/Work'
 
 const MOCK_WORKS = [
 	{
