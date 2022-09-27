@@ -10,6 +10,7 @@ import faker from 'faker'
 import WorkExternalLink from '../../src/types/WorkExternalLink'
 import WORK_EXTERNAL_LINK from '../../src/enums/WORK_EXTERNAL_LINK'
 import workExternalLinksDatabaseService from '../../src/database/services/workExternalLinksDatabaseService'
+import Work from "../../src/types/Work";
 
 const MOCK_WORKS = [
 	{
@@ -51,7 +52,7 @@ const MOCK_WORKS = [
 		updatedAt: DateTime.now(),
 		graduationYear: faker.date.past().getFullYear(),
 	}
-]
+] as Work[]
 
 const MOCK_WORK = {
 	id: 1,
@@ -63,7 +64,7 @@ const MOCK_WORK = {
 	createdAt: DateTime.now(),
 	updatedAt: DateTime.now(),
 	graduationYear: 2021,
-}
+} as Work
 
 const MOCK_FILES = [
 	{
