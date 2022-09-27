@@ -6,8 +6,8 @@ on:
       - '!master'
 
 jobs:
-  validate-frontend:
+  frontend:
     uses: ./.github/workflows/test-frontend.yml
 
-  validate-backend:
+  backend:
     uses: ./.github/workflows/test-backend.yml
