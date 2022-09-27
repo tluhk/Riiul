@@ -1,0 +1,29 @@
+@import 'src/colors';
+
+.header {
+  margin-bottom: 50px;
+  background-color: transparent !important;
+  box-shadow: none !important;
+
+  .title {
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+
+  .logo {
+    width: 15em;
+    margin-right: 2em;
+  }
+
+  .navigator-button {
+    color: $black-color !important;
+
+    &:hover {
+      color: $primary-dark-color !important;
+    }
+  }
+
+  .selected {
+    color: $primary-color !important;
+  }
+}

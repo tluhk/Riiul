@@ -1,0 +1,7 @@
+enum FORM_MODIFiCATION_TYPE {
+	NEW = 'NEW',
+	UPDATE =  'UPDATE',
+	DELETE = 'DELETE'
+}
+
+export  default FORM_MODIFiCATION_TYPE

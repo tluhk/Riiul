@@ -1,0 +1,13 @@
+name: code-validation
+on:
+  workflow_call:
+  push:
+    branches:
+      - '!master'
+
+jobs:
+  validate-frontend:
+    uses: ./.github/workflows/test-frontend.yml
+
+  validate-backend:
+    uses: ./.github/workflows/test-backend.yml

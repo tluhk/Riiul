@@ -1,0 +1,5 @@
+export enum FORM_MODIFICATION_TYPE {
+  NEW = 'NEW',
+  UPDATE = 'UPDATE',
+  DELETE = 'DELETE',
+}

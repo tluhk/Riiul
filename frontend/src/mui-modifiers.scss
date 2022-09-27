@@ -1,0 +1,57 @@
+@import "colors";
+
+
+.Mui-checked {
+  color: $primary-color !important;
+}
+
+.Mui-checked+.MuiSwitch-track {
+  background-color: $primary-color !important;
+}
+
+.MuiTextField-root, .MuiFormControl-root {
+  color: #fff;
+  .MuiFormLabel-colorPrimary.Mui-focused {
+    color: $primary-color !important;
+  }
+
+  .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: $primary-color !important;
+  }
+
+  .MuiInput-underline:after {
+    border-bottom-color: $primary-color !important;
+  }
+}
+
+.MuiYearPicker-root .Mui-selected {
+  background-color: $primary-color !important;
+}
+
+.MuiButton-root {
+  &.MuiButton-textPrimary {
+    color: $primary-color !important;
+  }
+
+  &.MuiButton-containedPrimary:not(.Mui-disabled) {
+    background-color: $primary-color !important;
+
+    &:hover {
+      color: $white-color !important;
+      background-color: $primary-dark-color !important;
+    }
+  }
+
+  &.MuiButton-containedSecondary:not(.Mui-disabled) {
+    background-color: $secondary-color !important;
+
+    &:hover {
+      color: $white-color !important;
+      background-color: $secondary-dark-color !important;
+    }
+  }
+}
+
+.MuiCircularProgress-colorPrimary {
+  color: $primary-color !important;
+}

@@ -1,0 +1,22 @@
+.work-view {
+  margin-bottom: 5em;
+
+  .image-container {
+    margin: 1em 0 2em 0 !important;
+  }
+
+  .attachment-paper {
+    width: 100%;
+    text-align: center;
+    & div * {
+      margin: 0.5em;
+    }
+  }
+
+  .attachment-link {
+    width: 100%;
+    &:hover {
+      text-decoration: none !important;
+    }
+  }
+}

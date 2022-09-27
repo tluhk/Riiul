@@ -1,0 +1,9 @@
+name: deployment-to-prod
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  validate:
+    uses: ./.github/workflows/code-validation.yml

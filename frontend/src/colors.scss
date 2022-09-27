@@ -1,0 +1,12 @@
+$primary-color: #b71234;
+$primary-light-color: lighten($primary-color, 5%);
+$primary-dark-color: darken($primary-color, 5%);
+
+$secondary-color: #6c757d;
+$secondary-light-color: lighten($secondary-color, 5%);
+$secondary-dark-color: darken($secondary-color, 5%);
+
+$black-color: rgba(0, 0, 0, 0.87);
+$white-color: #fff;
+
+$error-color: #f00;

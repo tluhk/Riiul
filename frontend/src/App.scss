@@ -1,0 +1,46 @@
+@import "mui-modifiers";
+
+.App {
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #525252;
+  font-size: 14px;
+}
+
+.App h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #525252;
+  font-size: 20px;
+}
+
+.App .headerTitle {
+  padding-top: 40px;
+}
+
+.App .headerButton {
+  padding-top: 40px;
+}
+.App .rec.rec-arrow {
+  background: #f8f9fa;
+}
+
+.App .rec.rec-arrow:hover {
+  background: #a6a6a6;
+  opacity: 75%;
+}
+
+.App .rec.rec-arrow:focus {
+  background: #a6a6a6;
+}
+
+.App .react-fancybox .thumbnail img {
+  width: 95%;
+}
+
+.portfolio-preview-image {
+  max-height: 14em;
+  max-width: 14em;
+}
+a {
+  color: $primary-color !important;
+}

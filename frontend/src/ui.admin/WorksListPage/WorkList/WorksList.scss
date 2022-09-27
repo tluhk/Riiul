@@ -1,0 +1,9 @@
+.admin-works-page {
+  .table-container {
+    height: 500px;
+  }
+
+  .MuiDataGrid-cell:focus {
+    outline: none !important;
+  }
+}

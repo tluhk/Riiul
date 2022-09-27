@@ -1,0 +1,20 @@
+.users-add-page {
+  .MuiGrid-item {
+    width: 250px !important;
+    padding-left: 0 !important;
+  }
+
+  .button-back {
+    float: left;
+  }
+
+  .button-submit {
+    float: right;
+  }
+
+  .hidden-field {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 1s ease-in;
+  }
+}
