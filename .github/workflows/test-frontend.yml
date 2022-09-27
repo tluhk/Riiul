@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: Bhacaz/checkout-files@v2
         with:
-          files: ./backend .eslintignore .eslintrc.json
+          files: backend .eslintignore .eslintrc.json
 
       - uses: actions/setup-python@v3
         with:
