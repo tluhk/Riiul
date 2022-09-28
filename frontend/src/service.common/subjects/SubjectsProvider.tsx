@@ -5,7 +5,7 @@ import subjectsService from '../../sdk.riiul-api/subjects/subjectsService'
 import Subject from '../../sdk.riiul-api/subjects/models/Subject'
 import specialitiesService from '../../sdk.riiul-api/subjects/subjectsService'
 
-const SubjectsProvider = React.memo(props => {
+const SubjectsProvider = React.memo<{children: React.ReactNode}>(props => {
 	const {isAuthenticated} = useLogin()
 	const [subjects, setSubjects] = useState<Subject[]>([])
 	const [isLoading, setIsLoading] = useState(true)

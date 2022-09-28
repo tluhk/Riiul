@@ -5,7 +5,7 @@ import {toast} from 'react-toastify'
 import authenticationService from '../../sdk.riiul-api/authentication/authenticationService'
 import tokenService from '../../sdk.riiul-api/common/tokenService'
 
-const LoginProvider = React.memo(props => {
+const LoginProvider = React.memo<{children: React.ReactNode}>(props => {
 	const {pathname} = useLocation()
 	const history = useHistory()
 

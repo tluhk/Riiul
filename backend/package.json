@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc",
-    "migrations": "node-pg-migrate -m ./dist/migrations  --ignore-pattern .*\\.js\\.map up",
+    "build": "tsc -p tsconfig-build.json",
     "start": "node ./dist/app.js",
+    "start:prod": "npm run migrate:up && npm run start",
     "test": "jest --forceExit --detectOpenHandles --runInBand",
-    "migrate": "node-pg-migrate -m ./src/migrations -j ts",
+    "migrate:create": "node-pg-migrate -m ./src/migrations -j ts create",
+    "migrate:up": "node-pg-migrate -m ./dist/migrations  --ignore-pattern .*\\.js\\.map up",
     "lint": "eslint test src"
   },
   "engines": {

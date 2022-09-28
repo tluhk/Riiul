@@ -1,0 +1,27 @@
+name: execute remote script
+on:
+  workflow_call:
+    inputs:
+      script:
+        required: true
+        type: string
+jobs:
+  execute-script:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commandS
+        uses: appleboy/ssh-action@master
+        with:
+          host: riiul.hk.tlu.ee
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          proxy_host: tigu.hk.tlu.ee
+          proxy_password: ${{ secrets.TIGU_PASSWORD }}
+          proxy_username: ${{ secrets.TIGU_USERNAME }}
+          proxy_port: 22
+          port: 2222
+          envs: REACT_APP_API_URL
+          script: |
+            cd ~/Riiul
+            ${{ inputs.script }}

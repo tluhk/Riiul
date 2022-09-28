@@ -4,7 +4,7 @@ import useLogin from '../../service.admin/login/useLogin'
 import useAsyncEffect from '../helpers/useAsyncEffect'
 import tagsService from '../../sdk.riiul-api/tags/tagsService'
 
-const TagsProvider = React.memo(props => {
+const TagsProvider = React.memo<{children: React.ReactNode}>(props => {
 	const {isAuthenticated} = useLogin()
 	const [tags, setTags] = useState<string[] | null>(null)
 	const [isLoading, setIsLoading] = useState(true)

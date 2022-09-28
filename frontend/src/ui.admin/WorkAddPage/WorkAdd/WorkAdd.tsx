@@ -86,10 +86,10 @@ const WorkAddPage = React.memo(() => {
 								views={['year']}
 								label='Lõpetamise aasta'
 								value={graduationYear ? DateTime.fromObject({year: graduationYear}) : null}
-								onChange={(x) => {
+								onChange={(x: { year: number }) => {
 									if (x) setGraduationYear(x.year)
 								}}
-								renderInput={(params) => <TextField  style={{width: '100%'}}{...params} />} />
+								renderInput={(params: any) => <TextField  style={{width: '100%'}}{...params} />} />
 						</Grid>
 					</Grid>
 				</Grid>

@@ -4,7 +4,7 @@ import usersService from '../../sdk.riiul-api/users/usersService'
 import useAsyncEffect from '../../service.common/helpers/useAsyncEffect'
 import User from '../../sdk.riiul-api/users/models/User'
 
-const UsersProvider = React.memo(props => {
+const UsersProvider = React.memo<{children: React.ReactNode}>(props => {
 	const { children } = props
 
 	const [users, setUsers] = useState<User[] | null>(null)

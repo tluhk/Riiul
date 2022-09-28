@@ -4,7 +4,7 @@ import WorkShort from '../../sdk.riiul-api/works/models/WorkShort'
 import homeService from '../../sdk.riiul-api/home/homeService'
 import useAsyncEffect from '../../service.common/helpers/useAsyncEffect'
 
-const HomeProvider = React.memo(props => {
+const HomeProvider = React.memo<{children: React.ReactNode}>(props => {
 	const [works, setWorks] = useState<Record<number, WorkShort[]>>({})
 	const [isLoading, setIsLoading] = useState(true)
 

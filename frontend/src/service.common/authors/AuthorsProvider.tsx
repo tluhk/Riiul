@@ -4,7 +4,7 @@ import useLogin from '../../service.admin/login/useLogin'
 import useAsyncEffect from '../helpers/useAsyncEffect'
 import authorService from '../../sdk.riiul-api/authors/authorService'
 
-const AuthorsProvider = React.memo(props => {
+const AuthorsProvider = React.memo<{children: React.ReactNode}>(props => {
 	const {isAuthenticated} = useLogin()
 
 	const [authors, setAuthors] = useState<string[] | null>(null)

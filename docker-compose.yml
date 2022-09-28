@@ -1,0 +1,42 @@
+version: "3"
+services:
+  backend:
+    hostname: backend
+    container_name: riiul-backend
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.backend
+    ports:
+      - 8080:8080
+    env_file: .env
+    depends_on:
+      - db
+    links:
+      - db
+  frontend:
+    container_name: riiul-frontend
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.frontend
+    env_file: .env
+  db:
+    hostname: database
+    env_file: .env
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+  proxy:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - backend
+      - frontend
+
+volumes:
+  db:
+    driver: local

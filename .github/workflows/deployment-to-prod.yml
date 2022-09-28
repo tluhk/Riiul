@@ -7,3 +7,27 @@ on:
 jobs:
   validate:
     uses: ./.github/workflows/code-validation.yml
+  clone-on-prod:
+    uses: ./.github/workflows/execute-remote-script.yml
+    with:
+      script: |
+        git pull
+        echo {{ secrets.ENV }} | base64 --decode >> .env
+  build-frontend:
+    needs: clone-on-prod
+    uses: ./.github/workflows/execute-remote-script.yml
+    with:
+      script: docker-compose build --no-cache frontend
+  build-backend:
+    needs: clone-on-prod
+    uses: ./.github/workflows/execute-remote-script.yml
+    with:
+      script: docker-compose build --no-cache backend
+  start:
+    needs:
+      - build-frontend
+      - build-backend
+    uses: ./.github/workflows/execute-remote-script.yml
+    with:
+      script: docker-compose up backend frontend
+

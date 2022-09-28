@@ -1,5 +1,4 @@
 import {configDev} from './config.dev'
-import {configTest} from './config.test'
 import {configProd} from './config.prod'
 
 export interface ConfigProps {
@@ -10,9 +9,7 @@ class Config {
 	private static _config: ConfigProps
 
 	static loadData() {
-		if (process.env.NODE_ENV === 'test') {
-			this._config = configTest
-		} else if (process.env.NODE_ENV === 'production') {
+		if (process.env.NODE_ENV === 'production') {
 			this._config = configProd
 		} else if (process.env.NODE_ENV === 'development') {
 			this._config = configDev
@@ -20,7 +17,7 @@ class Config {
 
 	}
 
-	get(key: keyof ConfigProps) {
-		return this._config[key]
+	static get(key: keyof ConfigProps) {
+		return Config._config[key]
 	}
 }

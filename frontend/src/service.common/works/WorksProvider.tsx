@@ -5,7 +5,7 @@ import workService from '../../sdk.riiul-api/works/workService'
 import {getWorkQueryProps} from './getWorkQueryProps'
 import WorkShort from '../../sdk.riiul-api/works/models/WorkShort'
 
-const WorksProvider = React.memo(props => {
+const WorksProvider = React.memo<{children: React.ReactNode}>(props => {
 	const {isAuthenticated} = useLogin()
 	const [works, setWorks] = useState<WorkShort[]>([])
 	const [isLoading, setIsLoading] = useState(true)
