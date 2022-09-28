@@ -15,7 +15,7 @@ jobs:
     with:
       script: |
         git pull
-        echo {{ secrets.ENV }} | base64 --decode >> .env
+        echo ${{ secrets.ENV }} | base64 --decode >> .env
 
   build-frontend:
     needs: clone-on-prod
