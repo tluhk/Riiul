@@ -66,7 +66,7 @@ jobs:
       - name: run database migrations
         run: |
           cd ./backend
-          npm run migrations
+          npm run migrate:up
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/test
 
