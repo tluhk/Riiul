@@ -8,6 +8,7 @@ jobs:
   validate:
     uses: ./.github/workflows/code-validation.yml
   clone-on-prod:
+    needs: validate
     uses: ./.github/workflows/execute-remote-script.yml
     with:
       script: |
