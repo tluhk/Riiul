@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - 'master'
-
+env:
+  ENV_BASE_64: ${{ secrets.ENV }}
 jobs:
   validate:
     uses: ./.github/workflows/code-validation.yml
@@ -15,7 +16,7 @@ jobs:
     with:
       script: |
         git pull
-        echo ${{ secrets.ENV }} | base64 --decode >> .env
+        echo $ENV_BASE_64 | base64 --decode >> .env
 
   build-frontend:
     needs: clone-on-prod
