@@ -61,6 +61,7 @@
     "typescript": "4.4.4"
   },
   "optionalDependencies": {
-    "fsevents": "*"
+    "fsevents": "*",
+    "@types/react": "17.0.2"
   }
 }
