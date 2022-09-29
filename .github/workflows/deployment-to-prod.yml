@@ -39,5 +39,5 @@ jobs:
     secrets: inherit
     uses: ./.github/workflows/execute-remote-script.yml
     with:
-      script: docker-compose up backend frontend
+      script: docker-compose up backend frontend -d
 
