@@ -14,7 +14,6 @@
 	},
 	"plugins": ["@typescript-eslint", "promise"],
 	"rules": {
-		"indent": ["error", "tab"],
 		"quotes": ["error", "single"],
 		"semi": ["error", "never"],
 		"eol-last": "error",
