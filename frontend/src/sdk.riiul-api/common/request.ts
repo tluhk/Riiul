@@ -2,6 +2,7 @@
 
 import tokenService from './tokenService'
 import ApiServiceError from './errors/ApiServiceError'
+import {Config, ConfigKeys} from '@riiul/frontend.shared'
 
 type ApiResponse<T> = {
 	response: Response,
@@ -9,7 +10,7 @@ type ApiResponse<T> = {
 }
 
 async function request<T>(method: string, path: string, auth: boolean, body?: Record<string, unknown>): Promise<ApiResponse<T>> {
-	const url = `${process.env.REACT_APP_API_URL}${path}`
+	const url = `${Config.get(ConfigKeys.API_URL)}${path}`
 	const options: any = {
 		headers: {
 			'Content-Type': 'application/json'
