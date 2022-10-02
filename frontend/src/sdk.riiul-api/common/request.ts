@@ -2,7 +2,7 @@
 
 import tokenService from './tokenService'
 import ApiServiceError from './errors/ApiServiceError'
-import {Config, ConfigKeys} from '@riiul/frontend.shared'
+import {Config, ConfigKeys} from '@riiul/shared'
 
 type ApiResponse<T> = {
 	response: Response,
