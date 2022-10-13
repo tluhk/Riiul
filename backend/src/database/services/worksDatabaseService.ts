@@ -87,7 +87,7 @@ async function saveWork(work: WorkPostBody, client: PoolClient): Promise<Work> {
 	]
 	const res = await query<WorkDatabaseType>('INSERT INTO works' +
 		'(subject_id, title, description, priority, active, graduation_year, is_video_preview_image)' +
-		'VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', data, client)
+		'VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', data, client)
 
 	return workMapper(res.rows[0])
 }
