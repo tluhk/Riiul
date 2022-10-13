@@ -1,4 +1,4 @@
-import React, {createContext, useEffect} from 'react'
+import React, {createContext, useEffect, useState} from 'react'
 import {Config, ConfigKeys} from '../utils/config'
 import {API} from '../utils/sdk/makeRequest'
 
@@ -13,11 +13,16 @@ export const ConfigContext = createContext<ConfigContextProps>({
 })
 
 export const ConfigProvider = React.memo<{children: React.ReactNode}>(props => {
+	const [hasInitialized, setIsInitialized] = useState(false)
+
 	useEffect(() => {
 		Config.init()
 
 		API.defaults.baseURL = Config.get(ConfigKeys.API_URL)
+		setIsInitialized(Config.hasInitialized)
 	}, [])
+
+	if (!hasInitialized) return <></>
 
 	const value = {
 		get: Config.get

@@ -11,8 +11,12 @@ export class Config {
 		if (process.env.NODE_ENV === 'production') Config._config = configProd
 	}
 
+	static get hasInitialized(): boolean {
+		return !!this._config
+	}
+
 	static get(key: ConfigKeys): string {
-		if (!this._config) throw new Error('Config has not been initialized')
+		if (!Config.hasInitialized) throw new Error('Config has not been initialized')
 
 		return Config._config[key]
 	}
