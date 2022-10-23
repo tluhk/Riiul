@@ -1,14 +1,12 @@
-import User from '../types/User'
-import Tag from '../types/Tag'
-import tagDatabaseService from '../database/services/tagDatabaseService'
+import {tagsRepository, Tag, User} from "@riiul/repository";
 
 export async function getTags(user?: User): Promise<string[]> {
 	let tags: Tag[]
 
 	if (user) {
-		tags = await tagDatabaseService.allTags()
+		tags = await tagsRepository.getTags()
 	} else {
-		tags = await tagDatabaseService.allTagsPublic()
+		tags = await tagsRepository.getPublicTags()
 	}
 
 	return tags.map(t => t.name)

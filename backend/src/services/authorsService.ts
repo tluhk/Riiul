@@ -1,14 +1,12 @@
-import User from '../types/User'
-import Author from '../types/Author'
-import authorDatabaseService from '../database/services/authorDatabaseService'
+import {authorsRepository, Author, User} from "@riiul/repository";
 
 export async function getAuthors(user?: User): Promise<string[]> {
 	let authors: Author[]
 
 	if (user) {
-		authors = await authorDatabaseService.allAuthors()
+		authors = await authorsRepository.getAuthors()
 	} else {
-		authors = await authorDatabaseService.allAuthorsPublic()
+		authors = await authorsRepository.getPublicAuthors()
 	}
 
 	return authors.map(t => t.name)

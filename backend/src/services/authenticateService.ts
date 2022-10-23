@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import usersDatabaseService from '../database/services/usersDatabaseService'
+import { usersRepository } from '@riiul/repository'
 import HttpErrorBadRequest from '../errors/HttpErrorBadRequest'
 import HttpErrorUnauthorized from '../errors/HttpErrorUnauthorized'
 
 export async function login(email: string, password: string): Promise<string> {
-	const res = await usersDatabaseService.findUserWithEmail(email)
+	const res = await usersRepository.findUserWithEmail(email)
 	if (!res || !bcrypt.compareSync(password, res.password)) throw new HttpErrorBadRequest('INVALID_EMAIL_OR_PASSWORD')
 
 	return generateJwtToken(res.id)

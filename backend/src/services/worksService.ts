@@ -1,41 +1,43 @@
 import WorkListResponse from '../types/WorkListResponse'
-import workDatabaseService from '../database/services/worksDatabaseService'
-import filesDatabaseService from '../database/services/filesDatabaseService'
-import User from '../types/User'
-import Work from '../types/Work'
 import WorkPostBody from '../types/WorkPostBody'
 import WorkResponse from '../types/WorkResponse'
 import {deleteFile, saveFile, updateFileOrder} from './filesService'
 import WorkUpdateBody, {ModifyWorkAddons} from '../types/WorkUpdateBody'
 import FORM_MODIFiCATION_TYPE from '../enums/FORM_MODIFiCATION_TYPE'
 import WorkListQuery from '../types/WorkListQuery'
-import File from '../types/File'
-import {begin, commit} from '../database/services/databaseService'
+import {
+	authorsRepository,
+	worksRepository,
+	workExternalLinksRepository,
+	filesRepository,
+	tagsRepository,
+	begin,
+	commit,
+	File,
+	User,
+	Work
+} from '@riiul/repository'
 import {PoolClient} from 'pg'
-import tagDatabaseService from '../database/services/tagDatabaseService'
-import authorDatabaseService from '../database/services/authorDatabaseService'
-import WorkQueryType from '../database/types/WorkQueryType'
-import workExternalLinksDatabaseService from '../database/services/workExternalLinksDatabaseService'
 import MODIFICATION_ORDER from '../enums/MODIFICATION_ORDER'
 
 export async function findWork(title: string, user?: User): Promise<WorkResponse> {
 	let work: Work
 
 	if (user) {
-		work = await workDatabaseService.findWorkWithTitle(title)
+		work = await worksRepository.findWorkWithTitle(title)
 	} else {
-		work = await workDatabaseService.findWorkPublicWithTitle(title)
+		work = await worksRepository.findPublicWorkWithTitle(title)
 	}
 
-	const filesAndImages = await filesDatabaseService.findWithWorksId([work.id])
+	const filesAndImages = await filesRepository.findFilesWithWorkId([work.id])
 
-	const tags = (await tagDatabaseService.findWithWorkId(work.id))
+	const tags = (await tagsRepository.findTagsWithWorkId(work.id))
 		.map(tag => tag.name)
 
-	const authors = (await authorDatabaseService.findWithWorkId(work.id))
+	const authors = (await authorsRepository.findAuthorWithWorkId(work.id))
 		.map(author => author.name)
 
-	const externalLinks = await workExternalLinksDatabaseService.findWithWorkId(work.id)
+	const externalLinks = await workExternalLinksRepository.findWorkExternalLinksWithWorkId(work.id)
 
 	function parseFile(file: File) {
 		return {
@@ -61,31 +63,26 @@ export async function findWork(title: string, user?: User): Promise<WorkResponse
 }
 
 export async function getWorks(user?: User, query?: WorkListQuery, client?: PoolClient): Promise<WorkListResponse[]> {
-	let works: Work[]
-	const dataBaseQuery: WorkQueryType = {
+	const dataBaseQuery = {
 		q: query?.q,
 		tags: query?.tags ? query.tags.split(',') : undefined,
 		subjects: query?.subjects ? query.subjects.split(',') : undefined,
 		authors: query?.authors ? query.authors.split(',') : undefined,
-		active: query?.active ? query.active === 'true' : undefined,
+		active: user ? (query?.active ? query.active === 'true' : undefined) : true
 	}
 
-	if (user) {
-		works = await workDatabaseService.allWorks(dataBaseQuery, client)
-	} else {
-		works = await workDatabaseService.allWorksPublic(dataBaseQuery, client)
-	}
+	const works = await worksRepository.findWorks(dataBaseQuery, client)
 
 	const worksWithVideoImagesIds = works.filter(w => w.isVideoPreviewImage)
 		.map(w => w.id)
 
-	const externalLinks = await workExternalLinksDatabaseService.findVideosWithWorkIds(worksWithVideoImagesIds)
+	const externalLinks = await workExternalLinksRepository.findVideosWithWorkIds(worksWithVideoImagesIds)
 	const externalLinksWorkIds = externalLinks.map(l => l.workId)
 
 	const workIds = works.filter(w => !externalLinksWorkIds.includes(w.id))
 		.map(p => p.id)
 
-	const images = (await filesDatabaseService.findWithWorksId(workIds))
+	const images = (await filesRepository.findFilesWithWorkId(workIds))
 		.filter(f => f.type === 'IMG')
 		.map(f => ({ id: f.workId, name: f.name + '.' + f.extension} ))
 
@@ -109,18 +106,18 @@ export async function getWorks(user?: User, query?: WorkListQuery, client?: Pool
 }
 
 export async function getPreviewWorks(): Promise<Record<number, WorkListResponse[]>> {
-	const works = await workDatabaseService.allWorksPublic()
+	const works = await worksRepository.findWorks({ active: true })
 
 	const worksWithVideoImagesIds = works.filter(w => w.isVideoPreviewImage)
 		.map(w => w.id)
 
-	const externalLinks = await workExternalLinksDatabaseService.findVideosWithWorkIds(worksWithVideoImagesIds)
+	const externalLinks = await workExternalLinksRepository.findVideosWithWorkIds(worksWithVideoImagesIds)
 	const externalLinksWorkIds = externalLinks.map(l => l.workId)
 
 	const workIds = works.filter(w => !externalLinksWorkIds.includes(w.id))
 		.map(p => p.id)
 
-	const images = (await filesDatabaseService.findWithWorksId(workIds))
+	const images = (await filesRepository.findFilesWithWorkId(workIds))
 		.filter(f => f.type === 'IMG')
 		.map(f => ({ id: f.workId, name: f.name + '.' + f.extension} ))
 
@@ -151,19 +148,19 @@ export async function getPreviewWorks(): Promise<Record<number, WorkListResponse
 }
 
 export async function deleteWork(id: number): Promise<void> {
-	await workDatabaseService.deleteWork(id)
+	await worksRepository.deleteWork(id)
 }
 
 export async function addWork(work: WorkPostBody): Promise<void> {
 	const client = await begin()
 
-	const newWork = await workDatabaseService.saveWork({ ...work, title: work.title.trim() }, client)
+	const newWork = await worksRepository.saveWork({ ...work, title: work.title.trim() }, client)
 
-	await Promise.all(work.tags.map(tag => tagDatabaseService.saveTag(tag, newWork.id, client)))
+	await Promise.all(work.tags.map(tag => tagsRepository.saveTag(tag, newWork.id, client)))
 
-	await Promise.all(work.authors.map(author => authorDatabaseService.saveAuthor(author, newWork.id, client)))
+	await Promise.all(work.authors.map(author => authorsRepository.saveAuthor(author, newWork.id, client)))
 
-	await Promise.all(work.externalLinks.map(link => workExternalLinksDatabaseService.saveWorkExternalLink(newWork.id, link, client)))
+	await Promise.all(work.externalLinks.map(link => workExternalLinksRepository.saveWorkExternalLink(newWork.id, link, client)))
 
 	await Promise.all(work.files.map(async (f, i) => {
 		await saveFile(f.name, f.contents, {id: newWork.id, order: i}, client)
@@ -182,7 +179,7 @@ export async function updateWork(id: number, work: WorkUpdateBody): Promise<void
 	if (work.title) work = { ...work, title: work.title.trim() }
 
 	try {
-		await workDatabaseService.updateWork(id, work, client)
+		await worksRepository.updateWork(id, work as unknown as Work, client)
 	} catch (e) {
 		if (e.message !== 'NO_FIELDS_TO_UPDATE') throw e
 	}
@@ -194,10 +191,10 @@ export async function updateWork(id: number, work: WorkUpdateBody): Promise<void
 	if (work.tags) for (const tag of work.tags.sort(modificationOrder as never)) {
 		switch (tag.modificationType) {
 		case (FORM_MODIFiCATION_TYPE.DELETE):
-			await tagDatabaseService.removeTagFromWork(tag.name, id, client)
+			await tagsRepository.removeTagFromWork(tag.name, id, client)
 			break
 		case (FORM_MODIFiCATION_TYPE.NEW):
-			await tagDatabaseService.saveTag(tag.name, id, client)
+			await tagsRepository.saveTag(tag.name, id, client)
 			break
 		}
 	}
@@ -205,10 +202,10 @@ export async function updateWork(id: number, work: WorkUpdateBody): Promise<void
 	if (work.authors) for (const author of work.authors.sort(modificationOrder as never)) {
 		switch (author.modificationType) {
 		case (FORM_MODIFiCATION_TYPE.DELETE):
-			await authorDatabaseService.removeAuthorFromWork(author.name, id, client)
+			await authorsRepository.removeAuthorFromWork(author.name, id, client)
 			break
 		case (FORM_MODIFiCATION_TYPE.NEW):
-			await authorDatabaseService.saveAuthor(author.name, id, client)
+			await authorsRepository.saveAuthor(author.name, id, client)
 			break
 		}
 	}
@@ -239,11 +236,11 @@ export async function updateWork(id: number, work: WorkUpdateBody): Promise<void
 
 	if (work.externalLinks) for (const link of work.externalLinks.sort(modificationOrder)) {
 		if (link.modificationType === FORM_MODIFiCATION_TYPE.DELETE) {
-			await workExternalLinksDatabaseService.deleteWorkExternalLink(link.id, client)
+			await workExternalLinksRepository.deleteWorkExternalLink(link.id, client)
 		}
 		else if (link.modificationType === FORM_MODIFiCATION_TYPE.UPDATE || link.modificationType === FORM_MODIFiCATION_TYPE.NEW) {
 
-			await workExternalLinksDatabaseService.saveWorkExternalLink(id, link, client)
+			await workExternalLinksRepository.saveWorkExternalLink(id, link, client)
 		}
 	}
 

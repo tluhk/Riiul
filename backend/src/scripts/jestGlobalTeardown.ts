@@ -1,10 +1,8 @@
-import usersDatabaseService from '../database/services/usersDatabaseService'
-import pool from '../database/services/poolService'
+import {query} from "../database/shared";
 
 async function jestGlobalTeardown(): Promise<void> {
-	await usersDatabaseService.deleteUser(1)
-
-	await pool.end()
+	await query(`drop schema public;`)
+	await query(`create schema public;`)
 }
 
 export default jestGlobalTeardown

@@ -61,7 +61,7 @@
     "clearMocks": true,
     "globalSetup": "./src/scripts/jestGlobalSetup.ts",
     "globalTeardown": "./src/scripts/jestGlobalTeardown.ts",
-    "testRegex": "/test/.*/.*.test.ts?$",
+    "testRegex": "/src/.*/.*.spec.ts?$",
     "globals": {
       "ts-jest": {
         "tsconfig": "tsconfig.json"
@@ -74,11 +74,13 @@
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
     },
+    "collectCoverage": true,
     "testEnvironment": "node",
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/app.ts",
       "!src/**/index.ts",
+      "!src/**/*.spec.ts",
       "!src/**/*.d.ts",
       "!src/migrations/*.ts",
       "!src/**/types/*.ts",

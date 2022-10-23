@@ -1,9 +1,9 @@
-import WORK_EXTERNAL_LINK from '../enums/WORK_EXTERNAL_LINK'
+import {WorkExternalLinkEnum} from "@riiul/repository";
 
 type WorkExternalLinkSave = {
 	title: string
 	link: string
-	type: WORK_EXTERNAL_LINK
+	type: WorkExternalLinkEnum
 }
 
 export default WorkExternalLinkSave

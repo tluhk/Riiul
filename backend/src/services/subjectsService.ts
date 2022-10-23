@@ -1,17 +1,15 @@
 import SubjectsListResponse from '../types/SubjectsListResponse'
-import User from '../types/User'
-import Subject from '../types/Subject'
-import subjectDatabaseService from '../database/services/subjectDatabaseService'
 import SubjectUpdateBody from '../types/SubjectUpdateBody'
 import SubjectPostBody from '../types/SubjectsPostBody'
+import {subjectsRepository, Subject, User} from "@riiul/repository"
 
 export async function getSubjects(user?: User): Promise<SubjectsListResponse> {
 	let subjects: Subject[]
 
 	if (user) {
-		subjects = await subjectDatabaseService.allSubjects()
+		subjects = await subjectsRepository.getSubjects()
 	} else {
-		subjects = await subjectDatabaseService.allSubjectsPublic()
+		subjects = await subjectsRepository.getPublicSubjects()
 	}
 
 	return subjects.map(s => ({
@@ -22,10 +20,10 @@ export async function getSubjects(user?: User): Promise<SubjectsListResponse> {
 }
 
 export async function updateSubject(id: number, subject: SubjectUpdateBody): Promise<void> {
-	await subjectDatabaseService.updateSubject(id, subject)
+	await subjectsRepository.updateSubject(id, subject)
 
 }
 
 export async function addSubject(subject: SubjectPostBody): Promise<void> {
-	await subjectDatabaseService.saveSubject(subject)
+	await subjectsRepository.saveSubject(subject)
 }

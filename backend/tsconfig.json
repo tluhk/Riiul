@@ -9,9 +9,7 @@
 		"outDir": "dist",
 		"baseUrl": ".",
 		"paths": {
-			"*": [
-				"node_modules/*"
-			]
+			"@riiul/repository": ["src/database"]
 		}
 	},
 	"include": [

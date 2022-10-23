@@ -1,11 +1,9 @@
-import File from '../types/File'
-import filesDatabaseService from '../database/services/filesDatabaseService'
 import fs from 'fs'
 import path from 'path'
 import {DateTime} from 'luxon'
 import HttpErrorNotFound from '../errors/HttpErrorNotFound'
 import {PoolClient} from 'pg'
-import {rollback} from '../database/services/databaseService'
+import { filesRepository, File, rollback } from '@riiul/repository'
 
 const dir = path.join(__dirname, '/../../files/')
 
@@ -17,7 +15,7 @@ export async function getFile(name: string): Promise<Buffer> {
 }
 
 export async function updateFileOrder(id: number, order: number, client: PoolClient): Promise<File> {
-	return await filesDatabaseService.updateFile(id, order, client)
+	return await filesRepository.updateFile(id, order, client)
 }
 
 export async function saveFile(filename: string, data: string, work: { id: number, order: number }, client: PoolClient): Promise<File> {
@@ -43,9 +41,9 @@ export async function saveFile(filename: string, data: string, work: { id: numbe
 		throw err
 	}
 
-	return await filesDatabaseService.save(file, client)
+	return await filesRepository.saveFile(file, client)
 }
 
 export async function deleteFile(id: number, client: PoolClient): Promise<void> {
-	await filesDatabaseService.deleteFile(id, client)
+	await filesRepository.deleteFile(id, client)
 }
