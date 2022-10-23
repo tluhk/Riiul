@@ -13,6 +13,8 @@ services:
       - db
     links:
       - db
+    volumes:
+      - ./files:/files
   frontend:
     container_name: riiul-frontend
     expose:
