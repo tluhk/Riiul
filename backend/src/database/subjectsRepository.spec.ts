@@ -1,6 +1,6 @@
 import {begin, query, rollback} from './shared'
 import {PoolClient} from 'pg'
-import {getPublicSubjects, getSubjects, saveSubject, updateSubject} from "./subjectsRepository";
+import {findSubjectWithId, getPublicSubjects, getSubjects, saveSubject, updateSubject} from "./subjectsRepository";
 
 describe('subjectsRepository', () => {
 	let client: PoolClient
@@ -11,6 +11,15 @@ describe('subjectsRepository', () => {
 
 	afterEach(async () => {
 		await rollback(client)
+	})
+
+	describe('findSubjectWithId', () => {
+		it('should find the subject', async () => {
+			const subject = await findSubjectWithId(1, client)
+			expect(subject).toBeDefined()
+			expect(subject).toHaveLength(1)
+
+		})
 	})
 
 	describe('getSubjects', () => {
@@ -54,11 +63,6 @@ describe('subjectsRepository', () => {
 		it('should throw error, when no fields to update', async () => {
 			await expect(updateSubject(1, {fieldThatNoExists: false} as unknown, client))
 				.rejects.toThrowError('NO_FIELDS_TO_UPDATE')
-		})
-
-		it('should throw error, when subject not found', async () => {
-			await expect(updateSubject(0, {active: false}, client))
-				.rejects.toThrowError('SUBJECT_NOT_FOUND')
 		})
 	})
 })

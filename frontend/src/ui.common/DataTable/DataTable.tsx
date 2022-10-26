@@ -22,7 +22,7 @@ const DataTable = React.memo<DataTableProps>(({addPath, rows, columns, onHideOrS
 	}, [rows])
 
 	return (
-		<Grid container spacing={2} direction="row" justifyContent="center" alignItems="flex-start" className='admin-works-page'>
+		<Grid container spacing={2} direction='row' justifyContent='center' alignItems='flex-start' className='admin-works-page'>
 			<Grid container item xs={12}>
 				<Grid container item xs={12} sm={6} spacing={2} justifyContent='flex-start'>
 					{onHideOrShow && <Grid item>

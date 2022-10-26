@@ -1,19 +1,22 @@
 import './Home.scss'
 
-import React, { ReactElement } from 'react'
-import useSubjects from '../../../service.common/subjects/useSubjects'
+import React from 'react'
 import {Grid} from '@mui/material'
 import LoadingIndicator from '../../../ui.common/LoadingIndicator/LoadingIndicator'
 import SubjectWorksItem from './SubjectWorksItem'
 import useHome from '../../../service.client/home/useHome'
+import {SubjectsClientResponse} from '@riiul/service.client/subject'
 
-const Specialities = (): ReactElement => {
+export interface HomeProps {
+	subjects: SubjectsClientResponse[]
+}
+
+export const Home = React.memo<HomeProps>(props => {
 	const { works, isLoading: isWorksLoading } = useHome()
-	const { subjects, isLoading: isSubjectsLoading } = useSubjects()
 
-	if (isWorksLoading || isSubjectsLoading) return <LoadingIndicator />
+	if (isWorksLoading) return <LoadingIndicator />
 
-	const SubjectWorksItemList = subjects
+	const SubjectWorksItemList = props.subjects
 		.filter(s => works[s.id]?.length)
 		.map((s) => <SubjectWorksItem key={s.id} subject={s} works={works[s.id]} />)
 
@@ -22,6 +25,4 @@ const Specialities = (): ReactElement => {
 			{SubjectWorksItemList}
 		</Grid>
 	)
-}
-
-export default Specialities
+})

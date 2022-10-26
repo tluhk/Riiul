@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc -p tsconfig-build.json",
+    "build": "tsc -p tsconfig-build.json && resolve-tspaths",
     "start": "node ./dist/app.js",
     "start:prod": "npm run migrate:up && npm run start",
     "test": "jest --forceExit --detectOpenHandles --runInBand",
@@ -51,6 +51,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "faker": "^5.5.3",
     "jest": "^27.2.5",
+    "resolve-tspaths": "^0.8.3",
     "superagent": "^6.1.0",
     "supertest": "^6.1.6",
     "ts-jest": "^27.1.3",
@@ -84,7 +85,14 @@
       "!src/**/*.d.ts",
       "!src/migrations/*.ts",
       "!src/**/types/*.ts",
-      "!src/**/enums/*.ts"
-    ]
+      "!src/**/enums/*.ts",
+      "!src/**/*Controller.ts"
+    ],
+    "moduleNameMapper": {
+      "@riiul/repository": "<rootDir>/src/database",
+      "@riiul/subjects": "<rootDir>/src/subjects",
+      "@riiul/(.*)": "<rootDir>/src/shared/$1",
+      "@riiul-shared/(.*)": "<rootDir>/../shared/$1"
+    }
   }
 }

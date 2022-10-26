@@ -17,13 +17,13 @@ const ExternalLink = React.memo<ExternalLinkProps>((props) => {
 		<Grid item xs={12} sm={6}>
 			<OutlinedContainer label={label}>
 				<TextField
-					label="Nimi"
+					label='Nimi'
 					name={`${namePrefix}LinkName`}
 					variant='standard'
 					hidden={hideName}
 					defaultValue={defaultName} />
 				<TextField
-					label="URL"
+					label='URL'
 					name={`${namePrefix}Link`}
 					variant='standard'
 					defaultValue={defaultUrl} />

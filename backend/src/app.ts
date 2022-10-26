@@ -5,18 +5,19 @@ import cookieParser from 'cookie-parser'
 import authenticateController from './controller/authenticateController'
 import usersController from './controller/usersController'
 import cors from 'cors'
-import subjectsController from './controller/subjectsController'
+import { subjectsAdminController, subjectsClientController } from './subjects'
 import filesController from './controller/filesController'
 import worksController from './controller/worksController'
 import Rollbar from 'rollbar'
-import HttpError from './errors/HttpError'
-import HttpErrorBadRequest from './errors/HttpErrorBadRequest'
-import HttpErrorNotFound from './errors/HttpErrorNotFound'
+import HttpError from './shared/errors/HttpError'
+import HttpErrorBadRequest from './shared/errors/HttpErrorBadRequest'
+import HttpErrorNotFound from './shared/errors/HttpErrorNotFound'
 import asyncHandler from 'express-async-handler'
-import HttpErrorInternalServerError from './errors/HttpErrorInternalServerError'
+import HttpErrorInternalServerError from './shared/errors/HttpErrorInternalServerError'
 import tagsController from './controller/tagsController'
 import authorsController from './controller/authorsController'
 import dashboardController from './controller/dashboardController'
+import {endpoints} from "./endpoints";
 
 const rollbar = new Rollbar({
 	accessToken: process.env.ROLLBAR_TOKEN,
@@ -40,12 +41,13 @@ app.use((_req: Request, res: Response, next: NextFunction) => {
 
 app.use('/authenticate', authenticateController)
 app.use('/files', filesController)
-app.use('/subjects', subjectsController)
 app.use('/users', usersController)
 app.use('/works', worksController)
 app.use('/tags', tagsController)
 app.use('/authors', authorsController)
 app.use('/homepage', dashboardController)
+
+endpoints.forEach(({ path, controller }) => app.use(path, controller))
 
 app.use(asyncHandler(() => {
 	throw new HttpErrorNotFound('NOT_FOUND')

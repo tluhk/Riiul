@@ -1,11 +1,11 @@
 import React from 'react'
 import {Divider, Grid, Typography} from '@mui/material'
 import WorkCard from '../../../ui.common/WorkCard/WorkCard'
-import Subject from '../../../sdk.riiul-api/subjects/models/Subject'
 import WorkShort from '../../../sdk.riiul-api/works/models/WorkShort'
+import {SubjectsClientResponse} from '@riiul/service.client/subject'
 
 export type SubjectWorksItemProps = {
-	subject: Subject
+	subject: SubjectsClientResponse
 	works: WorkShort[]
 }
 
@@ -16,9 +16,9 @@ const SubjectWorksItem = React.memo<SubjectWorksItemProps>((props) => {
 		<Grid className='row'
 			item container
 			spacing={2}
-			direction="row"
-			justifyContent="flex-start"
-			alignItems="flex-start" >
+			direction='row'
+			justifyContent='flex-start'
+			alignItems='flex-start' >
 			<Grid item xs={12}>
 				<Typography variant='h3'>
 					<a href={`/works?subjects=${subject.name}`}>

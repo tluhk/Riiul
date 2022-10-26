@@ -1,11 +1,16 @@
 import {query} from './shared'
 import { Subject } from './models'
-import HttpErrorBadRequest from '../errors/HttpErrorBadRequest'
-import HttpErrorNotFound from '../errors/HttpErrorNotFound'
+import HttpErrorBadRequest from '../shared/errors/HttpErrorBadRequest'
 import {PoolClient} from 'pg'
 import {DateTime} from "luxon";
 
 const UPDATABLE_FIELDS = ['name', 'active']
+
+export async function findSubjectWithId(id: number, client?: PoolClient): Promise<Subject> {
+	const { rows } = await query<Subject>('SELECT * FROM subjects WHERE id = $1', [id], client)
+
+	return rows[0]
+}
 
 export async function getSubjects(client?: PoolClient): Promise<Subject[]> {
 	const { rows } = await query<Subject>('SELECT * FROM subjects ORDER BY id desc', [], client)
@@ -26,7 +31,7 @@ export async function saveSubject(subject: Partial<Subject>, client?: PoolClient
 	return rows[0]
 }
 
-export async function updateSubject(id: number, subject: Partial<Subject>, client?: PoolClient): Promise<Subject> {
+export async function updateSubject(id: number, subject: Partial<Subject>, client?: PoolClient): Promise<Subject | undefined> {
 	const values: Array<string | number | boolean> = [id]
 	const fields = []
 
@@ -40,8 +45,7 @@ export async function updateSubject(id: number, subject: Partial<Subject>, clien
 	if (fields.length === 0) throw new HttpErrorBadRequest('NO_FIELDS_TO_UPDATE')
 
 	const res = await query<Subject>(`UPDATE subjects SET ${fields.join(', ')}, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *`, values, client)
-	if (res.rowCount === 0) throw new HttpErrorNotFound('SUBJECT_NOT_FOUND')
 
-	return res.rows[0]
+	return res.rows[0] || undefined
 }
 

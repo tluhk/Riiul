@@ -1,9 +1,9 @@
 import {query} from './shared'
 import {User} from './models'
-import HttpErrorNotFound from '../errors/HttpErrorNotFound'
+import HttpErrorNotFound from '../shared/errors/HttpErrorNotFound'
 import {PoolClient} from 'pg'
 import {DateTime} from "luxon";
-import HttpErrorBadRequest from "../errors/HttpErrorBadRequest";
+import HttpErrorBadRequest from "../shared/errors/HttpErrorBadRequest";
 
 const UPDATABLE_FIELDS = ['name', 'email', 'password']
 

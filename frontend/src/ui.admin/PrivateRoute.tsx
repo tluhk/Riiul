@@ -8,7 +8,7 @@ const PrivateRoute = ({ component: Component, ...rest }: RouteProps): ReactEleme
 	return (
 		<Route
 			{...rest}
-			component={isAuthenticated ? Component : () => loading ? <div /> : <Link to="/admin" />}
+			component={isAuthenticated ? Component : () => loading ? <div /> : <Link to='/admin' />}
 		/>
 	)
 }

@@ -51,7 +51,7 @@ class WorkMedia {
 			return (`https://img.youtube.com/vi/${this.link}/0.jpg`)
 		}
 
-		throw new Error(`Unknown media type "${this.type}"`)
+		throw new Error(`Unknown media type '${this.type}'`)
 	}
 }
 

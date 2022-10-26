@@ -5,23 +5,21 @@ import {Grid, Typography} from '@mui/material'
 import ImageContainer from './ImageContainer/ImageContainer'
 import useWork from '../../../service.admin/work/useWork'
 import LoadingIndicator from '../../../ui.common/LoadingIndicator/LoadingIndicator'
-import useSubjects from '../../../service.common/subjects/useSubjects'
-import Subject from '../../../sdk.riiul-api/subjects/models/Subject'
 import WorkAttachments from './WorkAttachments'
+import {SubjectsClientResponse} from '@riiul/service.client/subject'
 
 const WorkViewPage = React.memo(() => {
-	const { work, isLoading: worksIsLoading } = useWork()
-	const { subjects, isLoading: subjectsIsLoading } = useSubjects()
+	const { work, isLoading } = useWork()
 
-	if (worksIsLoading || subjectsIsLoading) return <LoadingIndicator />
+	if (isLoading) return <LoadingIndicator />
 
-	const subject = subjects.find(subject => subject.id === work?.subjectId) as Subject
+	const subject = { } as SubjectsClientResponse
 
 	return (
 		<Grid className='work-view' container>
 			<Grid item xs={12}>
 				<Typography variant='h2'>
-					<a href={subject.searchLink}>
+					<a href={`/works?subjects=${subject.name}`}>
 						{subject.name}
 					</a>
 				</Typography>
@@ -46,9 +44,9 @@ const WorkViewPage = React.memo(() => {
 			<Grid container item xs={12} justifyContent='center'>
 				<Grid item xs={12} sm={work?.hasAttachments ? 7 : 12}>
 					<Typography>
-						{work?.description}&nbsp;
+						{work?.description}&nbsp
 						{work?.tags.map(tag => (
-							<><a className='author' href={`/works?tags=${tag}`}>{tag}</a>&nbsp;</>
+							<><a className='author' href={`/works?tags=${tag}`}>{tag}</a>&nbsp</>
 						))}
 					</Typography>
 				</Grid>

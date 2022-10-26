@@ -25,12 +25,12 @@ const Header = React.memo(() => {
 		<Container maxWidth='xl'>
 			<Toolbar>
 				<Grid container>
-					<Grid item container xs={10} direction="row" justifyContent="flex-start" alignItems="center">
+					<Grid item container xs={10} direction='row' justifyContent='flex-start' alignItems='center'>
 						<Link to={'/'} className='logo'>
-							<img src={hkLogo} alt="Hakkimise kool" className='logo'/>
+							<img src={hkLogo} alt='Hakkimise kool' className='logo'/>
 						</Link>
 						{pathsToRender.map(({to, name}) => <Button
-							activeClassName="selected"
+							activeClassName='selected'
 							className='navigator-button'
 							component={NavLink}
 							key={name}
@@ -38,7 +38,7 @@ const Header = React.memo(() => {
 							{name}
 						</Button>)}
 					</Grid>
-					<Grid item container xs={2} direction="row" justifyContent="flex-end" alignItems="center">
+					<Grid item container xs={2} direction='row' justifyContent='flex-end' alignItems='center'>
 						{isInAdminPath && isAuthenticated
 							? <IconButton className='navigator-button' onClick={logOut}><Logout /></IconButton>
 							: <IconButton className='navigator-button' component={Link} to='/admin'><Login /></IconButton>

@@ -2,7 +2,7 @@ import {query} from '../../src/database/services/databaseService'
 import {generateJwtToken, login, validateToken} from '../../src/services/authenticateService'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import HttpErrorBadRequest from '../../src/errors/HttpErrorBadRequest'
+import HttpErrorBadRequest from '../../src/shared/errors/HttpErrorBadRequest'
 
 describe('login', () => {
 	const data = ['TEST_NAME', 'AUTH_TEST_EMAIL', bcrypt.hashSync('TEST_PASSWORD', 1)]

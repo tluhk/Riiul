@@ -1,8 +1,8 @@
 import {query} from './shared'
 import { Work, WorkQuery } from '@riiul/repository'
-import HttpErrorNotFound from '../errors/HttpErrorNotFound'
+import HttpErrorNotFound from '../shared/errors/HttpErrorNotFound'
 import {PoolClient} from 'pg'
-import HttpErrorBadRequest from '../errors/HttpErrorBadRequest'
+import HttpErrorBadRequest from '../shared/errors/HttpErrorBadRequest'
 import generateConditionQuery from './shared/generateWorkConditionQuery'
 
 const UPDATABLE_FIELDS = [

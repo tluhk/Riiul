@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { usersRepository } from '@riiul/repository'
-import HttpErrorBadRequest from '../errors/HttpErrorBadRequest'
-import HttpErrorUnauthorized from '../errors/HttpErrorUnauthorized'
+import HttpErrorBadRequest from '../shared/errors/HttpErrorBadRequest'
+import HttpErrorUnauthorized from '../shared/errors/HttpErrorUnauthorized'
 
 export async function login(email: string, password: string): Promise<string> {
 	const res = await usersRepository.findUserWithEmail(email)

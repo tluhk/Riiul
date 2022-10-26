@@ -10,19 +10,23 @@ import useWork from '../../../service.admin/work/useWork'
 import Select from '../../../ui.common/Select/Select'
 import Autocomplete from '../../../ui.common/Autocomplete/Autocomplete'
 import Attachments from './components/Attachments/Attachments'
-import LoadingIndicator from '../../../ui.common/LoadingIndicator/LoadingIndicator'
-import OutlinedContainer from '../../../ui.common/OutlinedContainer/OutlinedContainer'
 import WorkFile from '../../../sdk.riiul-api/works/models/WorkFile'
-import useSubjects from '../../../service.common/subjects/useSubjects'
 import useTags from '../../../service.common/tags/useTags'
 import useAuthors from '../../../service.common/authors/useAuthors'
 import WorkFormElement from '../../../service.admin/work/types/WorkFormElement'
 import ExternalLink from './components/ExternalLink'
+import { SubjectsAdminResponse} from '@riiul/service.admin'
+import LoadingIndicator from '@riiul/ui.common/LoadingIndicator/LoadingIndicator'
+import OutlinedContainer from '@riiul/ui.common/OutlinedContainer/OutlinedContainer'
 
-const WorkAddPage = React.memo(() => {
+export interface WorkAddPageProps {
+	subjectsResponse: SubjectsAdminResponse
+}
+
+const WorkAddPage = React.memo<WorkAddPageProps>(props => {
+	const { subjectsResponse } = props
 	const { work, isSaving, isLoading, save } = useWork()
 
-	const { subjects } = useSubjects()
 	const { tags } = useTags()
 	const { authors } = useAuthors()
 
@@ -72,7 +76,7 @@ const WorkAddPage = React.memo(() => {
 							defaultValue={work?.title}/>
 					</Grid>
 					<Grid item>
-						<Select items={subjects.map(x => x.toLabelValue())} defaultValue={work?.subjectId} label='Eriala' name='subject'/>
+						<Select items={subjectsResponse.getLabels} defaultValue={work?.subjectId} label='Eriala' name='subject'/>
 					</Grid>
 					<Grid item container>
 						<Grid item xs={12} sm={4}>
@@ -103,7 +107,7 @@ const WorkAddPage = React.memo(() => {
 				</Grid>
 				<Grid item xs={12}>
 					<TextField
-						label="Kirjeldus"
+						label='Kirjeldus'
 						name='description'
 						defaultValue={work?.description}
 						multiline

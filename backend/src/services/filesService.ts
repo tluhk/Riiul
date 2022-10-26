@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import {DateTime} from 'luxon'
-import HttpErrorNotFound from '../errors/HttpErrorNotFound'
+import HttpErrorNotFound from '../shared/errors/HttpErrorNotFound'
 import {PoolClient} from 'pg'
 import { filesRepository, File, rollback } from '@riiul/repository'
 

@@ -27,15 +27,15 @@ const ImageContainer = React.memo<ImageContainerProps>(({ medias }) => {
 
 	return (
 		<Grid item xs={12} className='image-container'>
-			<Grid justifyContent="center" spacing={1} container>
+			<Grid justifyContent='center' spacing={1} container>
 				<Grid item xs={12} className='active-image-container'>
 					{activeMedia.isImage &&
 						<img className={'active-image'}
-							alt="MainProductImage"
+							alt='MainProductImage'
 							src={activeMedia.src} />}
 					{activeMedia.isYoutube && <iframe
 						src={activeMedia.src}
-						frameBorder="0"/>}
+						frameBorder='0'/>}
 				</Grid>
 				{snapshots}
 			</Grid>

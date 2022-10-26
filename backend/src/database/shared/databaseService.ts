@@ -1,7 +1,7 @@
 import {DatabaseError, PoolClient, QueryResult} from 'pg'
 import { pool} from './poolService'
 import {snakeCaseToCamelCase} from "./snakeCaseToCamelCase"
-import HttpErrorBadRequest from '../../errors/HttpErrorBadRequest'
+import HttpErrorBadRequest from '../../shared/errors/HttpErrorBadRequest'
 import * as thisModule from './databaseService'
 
 export type ReturnType<T> = Promise<QueryResult<T>>

@@ -24,29 +24,29 @@ const AdminLoginPage = React.memo<RouteComponentProps>(({history}) => {
 
 	return (
 		<Container >
-			<Row className="mt-5 justify-content-center">
-				<Col lg={4} md={5} sm={6} className="bg-light p-5">
+			<Row className='mt-5 justify-content-center'>
+				<Col lg={4} md={5} sm={6} className='bg-light p-5'>
 					<Form onSubmit={onSubmit}>
-						<Form.Group controlId="formBasicEmail">
-							<Form.Label className="float-left">Kasutajatunnus</Form.Label>
+						<Form.Group controlId='formBasicEmail'>
+							<Form.Label className='float-left'>Kasutajatunnus</Form.Label>
 							<Form.Control
-								type="email"
-								name="email"
+								type='email'
+								name='email'
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
-								placeholder="Enter email" />
+								placeholder='Enter email' />
 						</Form.Group>
-						<Form.Group controlId="formBasicPassword">
-							<Form.Label className="float-left">Salasõna</Form.Label>
+						<Form.Group controlId='formBasicPassword'>
+							<Form.Label className='float-left'>Salasõna</Form.Label>
 							<Form.Control
-								type="password"
-								name="password"
+								type='password'
+								name='password'
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
-								placeholder="Password"
+								placeholder='Password'
 							/>
 						</Form.Group>
-						<Button variant="secondary" type="submit" value="login ">Logi sisse</Button>
+						<Button variant='secondary' type='submit' value='login'>Logi sisse</Button>
 					</Form>
 				</Col>
 			</Row>

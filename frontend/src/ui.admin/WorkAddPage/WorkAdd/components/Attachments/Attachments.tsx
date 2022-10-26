@@ -16,7 +16,7 @@ const Attachments = React.memo<AttachmentsProps>((props) => {
 
 	return (
 		<Grid item xs={12}>
-			<OutlinedContainer label="Manused">
+			<OutlinedContainer label='Manused'>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
 						<Typography align='left'>Pildid (Min 1 pilt)</Typography>

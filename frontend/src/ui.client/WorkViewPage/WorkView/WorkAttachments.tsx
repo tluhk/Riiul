@@ -6,7 +6,7 @@ import WorkFileAttachment from './WorkFileAttachment'
 import WorkLinkAttachment from './WorkLinkAttachment'
 
 export type WorkAttachmentsProps = {
-	attachments: (WorkFile | WorkExternalLink)[];
+	attachments: (WorkFile | WorkExternalLink)[]
 }
 
 const WorkAttachments = React.memo<WorkAttachmentsProps>((props) => {
@@ -16,7 +16,7 @@ const WorkAttachments = React.memo<WorkAttachmentsProps>((props) => {
 
 	return (
 		<>
-			{hasAttachments && <Divider orientation="vertical" variant="middle" flexItem style={{margin: '0 1em'}}/>}
+			{hasAttachments && <Divider orientation='vertical' variant='middle' flexItem style={{margin: '0 1em'}}/>}
 			<Grid item container xs={12} sm={4} spacing={2}>
 				{attachments.map((attachment) => {
 					if (attachment instanceof WorkFile) {

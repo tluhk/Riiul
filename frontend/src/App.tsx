@@ -15,7 +15,7 @@ const App = (): ReactElement => {
 		<ConfigProvider>
 			<Router forceRefresh={true}>
 				<LocalizationProvider dateAdapter={Adapter}>
-					<div className="App">
+					<div className='App'>
 						<Switch>
 							<Route path='/admin' component={AppAdmin}/>
 							<Route path={'/'} component={AppClient}/>

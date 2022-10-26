@@ -9,7 +9,7 @@ type ApiResponse<T> = {
 	body: T
 }
 
-async function request<T>(method: string, path: string, auth: boolean, body?: Record<string, unknown>): Promise<ApiResponse<T>> {
+async function request<T>(method: string, path: string, auth: boolean, body?: Record<any, any>): Promise<ApiResponse<T>> {
 	const url = `${Config.get(ConfigKeys.API_URL)}${path}`
 	const options: any = {
 		headers: {
@@ -50,11 +50,11 @@ export async function get<T>(path: string, auth = false): Promise<ApiResponse<T>
 	return await request<T>('GET', path, auth)
 }
 
-export async function put<T = void>(path: string, body: Record<string, unknown>, auth = true): Promise<ApiResponse<T>> {
+export async function put<T = void>(path: string, body: Record<any, any>, auth = true): Promise<ApiResponse<T>> {
 	return await request<T>('PUT', path, auth, body)
 }
 
-export async function post<T = void>(path: string, body: Record<string, unknown>, auth = true): Promise<ApiResponse<T>> {
+export async function post<T = void>(path: string, body: Record<any, any>, auth = true): Promise<ApiResponse<T>> {
 	return await request<T>('POST', path, auth, body)
 }
 

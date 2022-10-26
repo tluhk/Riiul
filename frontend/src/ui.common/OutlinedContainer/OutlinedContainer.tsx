@@ -11,18 +11,18 @@ export type OutlinedContainerProps = {
 
 const OutlinedContainer = React.memo<OutlinedContainerProps>(({ children, label }) => {
 	return (
-		<div className="outlined-container">
+		<div className='outlined-container'>
 			<InputLabel
-				variant="outlined"
+				variant='outlined'
 				className='input-label'
 				shrink
 			>{label}</InputLabel>
 			<div className={'content-wrapper'}>
-				<div className="content">
+				<div className='content'>
 					{children}
 					<NotchedOutline
 						label={label}
-						className="notched-outline MuiOutlinedInput-notchedOutline"
+						className='notched-outline MuiOutlinedInput-notchedOutline'
 						notched
 					/>
 				</div>

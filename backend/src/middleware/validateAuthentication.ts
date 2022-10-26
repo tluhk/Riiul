@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import asyncHandler from 'express-async-handler'
 import {generateJwtToken, validateToken} from '../services/authenticateService'
 import {usersRepository} from '@riiul/repository'
-import HttpErrorUnauthorized from '../errors/HttpErrorUnauthorized'
+import HttpErrorUnauthorized from '../shared/errors/HttpErrorUnauthorized'
 
 async function validateAuthentication(req: Request<never>, res: Response, next: NextFunction) {
 	res.locals.user = await usersRepository.findUser(validateToken(req.headers.authorization))

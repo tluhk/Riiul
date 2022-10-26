@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt'
 import {usersRepository, User} from '@riiul/repository'
 import UserListResponse from '../types/UserListResponse'
 import UserResponse from '../types/UserResponse'
-import HttpErrorNotFound from '../errors/HttpErrorNotFound'
-import HttpErrorBadRequest from '../errors/HttpErrorBadRequest'
+import HttpErrorNotFound from '../shared/errors/HttpErrorNotFound'
+import HttpErrorBadRequest from '../shared/errors/HttpErrorBadRequest'
 import {PoolClient} from 'pg'
 
 export async function getUsers(): Promise<UserListResponse[]> {

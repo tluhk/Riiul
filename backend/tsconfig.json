@@ -7,13 +7,14 @@
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"outDir": "dist",
-		"baseUrl": ".",
+		"baseUrl": "./",
 		"paths": {
-			"@riiul/repository": ["src/database"]
+			"@riiul/repository": ["src/database/"],
+			"@riiul/subjects": ["src/subjects/"],
+			"@riiul/*": ["src/shared/*"]
 		}
 	},
 	"include": [
-		"src/**/*",
-		"test/**/*"
+		"src"
 	]
 }

@@ -4,7 +4,7 @@ import {LinkOutlined} from '@mui/icons-material'
 import WorkExternalLink from '../../../sdk.riiul-api/works/models/WorkExternalLink'
 
 export type WorkLinkAttachmentProps = {
-	attachment: WorkExternalLink;
+	attachment: WorkExternalLink
 }
 
 const WorkLinkAttachment = React.memo<WorkLinkAttachmentProps>((props) => {
@@ -12,11 +12,11 @@ const WorkLinkAttachment = React.memo<WorkLinkAttachmentProps>((props) => {
 
 	return (
 		<Grid item style={{ width: '100%' }}>
-			<a href={attachment.link} target="_blank" className='attachment-link'>
+			<a href={attachment.link} target='_blank' className='attachment-link'>
 				<Paper elevation={3} key={attachment.id} className='attachment-paper'>
 					<Grid container>
 						<LinkOutlined />
-						<Divider orientation="vertical" variant="middle" flexItem />
+						<Divider orientation='vertical' variant='middle' flexItem />
 						<Typography>{attachment.title}</Typography>
 					</Grid>
 				</Paper>

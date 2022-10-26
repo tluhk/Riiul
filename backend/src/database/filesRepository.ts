@@ -1,6 +1,6 @@
 import {File} from './models'
 import {query} from './shared'
-import HttpErrorNotFound from '../errors/HttpErrorNotFound'
+import HttpErrorNotFound from '../shared/errors/HttpErrorNotFound'
 import {PoolClient} from 'pg'
 
 export async function findFileWithNameAndExtension(name: string, extension: string, client?: PoolClient): Promise<File | null> {

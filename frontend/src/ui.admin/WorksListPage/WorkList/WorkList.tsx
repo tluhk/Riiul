@@ -5,17 +5,15 @@ import columns from './columns'
 import DataTable from '../../../ui.common/DataTable'
 import useWorks from '../../../service.common/works/useWorks'
 import LoadingIndicator from '../../../ui.common/LoadingIndicator/LoadingIndicator'
-import useSubjects from '../../../service.common/subjects/useSubjects'
 import {useHistory} from 'react-router-dom'
 
 const WorksListPage = React.memo(() => {
 	const history = useHistory()
-	const { subjects } = useSubjects()
 	const { works, remove, hideOrShow, isLoading} = useWorks()
 
 	const rows = works?.map(work => ({
 		...work,
-		subject: subjects.find(speciality => speciality.id === work.subjectId)?.name || '???'
+		subject: '???'
 	}))
 
 	if (isLoading) return <LoadingIndicator />

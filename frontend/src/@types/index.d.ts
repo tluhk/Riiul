@@ -1,1 +1,1 @@
-declare module 'react-fancybox';
+declare module 'react-fancybox'

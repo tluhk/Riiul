@@ -5,7 +5,7 @@ import {API} from '../utils/sdk/makeRequest'
 
 async function renderComponent() {
 	const component = await mount(
-		<ConfigProvider><h1 id="title">Title</h1></ConfigProvider>
+		<ConfigProvider><h1 id='title'>Title</h1></ConfigProvider>
 	)
 	component.update()
 
