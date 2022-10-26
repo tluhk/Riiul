@@ -105,7 +105,7 @@ export const SearchBox = React.memo<SearchBoxProps>(props => {
 					/>
 				)}
 			/>
-			<Button className='submit' variant='contained' color='primary' onClick={submit}>Otsi</Button>
+			<Button className='submit' variant='contained' onClick={submit}>Otsi</Button>
 		</Grid>
 	)
 })

@@ -34,7 +34,7 @@ export const SubjectForm = React.memo<SubjectFormProps>(props => {
 				</Grid>
 				<Grid item container direction='row'>
 					<Grid item container xs={6} justifyContent='center'>
-						<Button className='button-back' variant='contained' component={Link} to='/admin/specialities' color='secondary'>Tagasi</Button>
+						<Button className='button-back' variant='contained' component={Link} to='/admin/specialities'>Tagasi</Button>
 					</Grid>
 					<Grid item container xs={6} justifyContent='center'>
 						<LoadingButton
@@ -43,8 +43,7 @@ export const SubjectForm = React.memo<SubjectFormProps>(props => {
 							loading={isSaving}
 							loadingPosition='start'
 							className='button-submit'
-							variant='contained'
-							color='secondary'>Salvesta</LoadingButton>
+							variant='contained'>Salvesta</LoadingButton>
 					</Grid>
 				</Grid>
 			</Grid>

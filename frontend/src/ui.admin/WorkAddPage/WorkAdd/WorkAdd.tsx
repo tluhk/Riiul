@@ -144,7 +144,7 @@ const WorkAddPage = React.memo<WorkAddPageProps>(props => {
 					onImagesChange={setImages} />
 				<Grid item container direction='row' className='function-block'>
 					<Grid item container xs={6} justifyContent='center' >
-						<Button className={'button-back'} variant='contained' component={Link} to='/admin/works' color='secondary'>Tagasi</Button>
+						<Button className={'button-back'} variant='contained' component={Link} to='/admin/works'>Tagasi</Button>
 					</Grid>
 					<Grid item container xs={6} justifyContent='center' >
 						<LoadingButton
@@ -153,8 +153,7 @@ const WorkAddPage = React.memo<WorkAddPageProps>(props => {
 							loading={isSaving}
 							loadingPosition='start'
 							className={'button-submit'}
-							variant='contained'
-							color='secondary'>Salvesta</LoadingButton>
+							variant='contained'>Salvesta</LoadingButton>
 					</Grid>
 				</Grid>
 			</Grid>

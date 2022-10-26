@@ -34,11 +34,12 @@
   }
 
   &.MuiButton-containedPrimary:not(.Mui-disabled) {
-    background-color: $primary-color !important;
+    color: $white-color !important;
+    background-color: $secondary-color !important;
 
     &:hover {
       color: $white-color !important;
-      background-color: $primary-dark-color !important;
+      background-color: $secondary-dark-color !important;
     }
   }
 

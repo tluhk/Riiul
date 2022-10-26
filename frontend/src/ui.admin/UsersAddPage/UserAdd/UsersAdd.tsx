@@ -62,7 +62,7 @@ const UsersAdd = React.memo(() => {
 				</Grid>
 				<Grid item container direction='row'>
 					<Grid item xs={6}>
-						<Button className={'button-back'} variant='contained' component={Link} to='/admin/users' color='secondary'>Tagasi</Button>
+						<Button className={'button-back'} variant='contained' component={Link} to='/admin/users'>Tagasi</Button>
 					</Grid>
 					<Grid item xs={6}>
 						<LoadingButton
@@ -71,8 +71,7 @@ const UsersAdd = React.memo(() => {
 							loading={isSaving}
 							loadingPosition='start'
 							className='button-submit'
-							variant='contained'
-							color='secondary'>Salvesta</LoadingButton>
+							variant='contained'>Salvesta</LoadingButton>
 					</Grid>
 				</Grid>
 			</Grid>
