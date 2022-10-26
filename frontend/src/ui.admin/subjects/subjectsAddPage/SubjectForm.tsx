@@ -19,15 +19,15 @@ export const SubjectForm = React.memo<SubjectFormProps>(props => {
 
 	return (
 		<form onSubmit={save} >
-			<Grid container direction='column' alignItems='center' spacing={8} className='specialities-add-page'>
-				<Grid item>
+			<Grid container direction='row' alignItems='center' justifyContent='center' spacing={2} className='specialities-add'>
+				<Grid item md={4}>
 					<TextField
 						label='Nimi'
 						fullWidth
 						name='name'
 						defaultValue={defaultSubject?.name}/>
 				</Grid>
-				<Grid item>
+				<Grid item md={2}>
 					<FormControlLabel
 						label='Nähtav'
 						control={<Switch name='active' defaultChecked={defaultSubject?.active || false} />} />

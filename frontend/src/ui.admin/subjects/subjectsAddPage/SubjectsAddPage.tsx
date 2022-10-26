@@ -50,11 +50,11 @@ export const SubjectsAddPage = React.memo<RouteComponentProps<{ id?: string }>>(
 		window.location.reload()
 	}
 
-	if (isLoading || response === undefined || response.isErrored) return <LoadingIndicator />
+	if (isLoading || response?.isErrored) return <LoadingIndicator />
 
 	return <SubjectForm
 		save={save}
-		defaultSubject={response.data}
+		defaultSubject={response?.data}
 		isSaving={isSaving}
 	/>
 })
