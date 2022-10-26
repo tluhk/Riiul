@@ -1,5 +1,8 @@
 @import "colors";
 
+.MuiDataGrid-row:hover {
+  cursor: pointer;
+}
 
 .Mui-checked {
   color: $primary-color !important;
