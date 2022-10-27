@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser'
 import authenticateController from './controller/authenticateController'
 import usersController from './controller/usersController'
 import cors from 'cors'
-import { subjectsAdminController, subjectsClientController } from './subjects'
 import filesController from './controller/filesController'
 import worksController from './controller/worksController'
 import Rollbar from 'rollbar'
@@ -17,7 +16,7 @@ import HttpErrorInternalServerError from './shared/errors/HttpErrorInternalServe
 import tagsController from './controller/tagsController'
 import authorsController from './controller/authorsController'
 import dashboardController from './controller/dashboardController'
-import {endpoints} from "./endpoints";
+import {endpoints} from "./endpoints"
 
 const rollbar = new Rollbar({
 	accessToken: process.env.ROLLBAR_TOKEN,

@@ -1,4 +1,4 @@
-import {WorkExternalLinkEnum} from "@riiul/repository";
+import {WorkExternalLinkEnum} from "@riiul/repository"
 
 type WorkExternalLinkSave = {
 	title: string

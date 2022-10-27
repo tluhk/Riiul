@@ -1,6 +1,6 @@
 import {subjectsRepository} from "@riiul/repository"
-import {SubjectPostBody, SubjectsAdminResponse, SubjectsClientResponse, SubjectUpdateBody} from "./models";
-import HttpErrorNotFound from "@riiul/errors/HttpErrorNotFound";
+import {SubjectPostBody, SubjectsAdminResponse, SubjectsClientResponse, SubjectUpdateBody} from "./models"
+import HttpErrorNotFound from "@riiul/errors/HttpErrorNotFound"
 
 export async function findSubject(id: number): Promise<SubjectsAdminResponse> {
 	const subject = await subjectsRepository.findSubjectWithId(id)

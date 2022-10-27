@@ -1,4 +1,4 @@
-import {authorsRepository, Author, User} from "@riiul/repository";
+import {authorsRepository, Author, User} from "@riiul/repository"
 
 export async function getAuthors(user?: User): Promise<string[]> {
 	let authors: Author[]

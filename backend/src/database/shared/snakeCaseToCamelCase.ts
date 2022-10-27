@@ -1,4 +1,5 @@
-import {DateTime} from "luxon";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {DateTime} from "luxon"
 
 const toCamel = (str: string) => {
   return str.replace(/([-_][a-z])/ig, group =>
@@ -6,8 +7,8 @@ const toCamel = (str: string) => {
       .toUpperCase()
       .replace('-', '')
       .replace('_', '')
-  );
-};
+  )
+}
 
 export function snakeCaseToCamelCase<T>(input: Record<any, any>): T {
   const result: Record<any, any> = {}

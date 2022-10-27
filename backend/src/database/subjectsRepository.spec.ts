@@ -1,6 +1,6 @@
 import {begin, query, rollback} from './shared'
 import {PoolClient} from 'pg'
-import {findSubjectWithId, getPublicSubjects, getSubjects, saveSubject, updateSubject} from "./subjectsRepository";
+import {findSubjectWithId, getPublicSubjects, getSubjects, saveSubject, updateSubject} from "./subjectsRepository"
 
 describe('subjectsRepository', () => {
 	let client: PoolClient

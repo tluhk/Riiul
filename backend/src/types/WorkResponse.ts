@@ -1,4 +1,4 @@
-import {WorkExternalLink} from "@riiul/repository";
+import {WorkExternalLink} from "@riiul/repository"
 
 type WorkResponse = {
 	id: number

@@ -3,7 +3,7 @@ import express from 'express'
 import {addSubject, findSubject, getSubjects, updateSubject} from './subjectsService'
 import validateAuthentication from '../middleware/validateAuthentication'
 import {SubjectsAdminResponse,SubjectPostBody, SubjectUpdateBody} from "./models"
-import {ResponseHolder} from "@riiul/models";
+import {ResponseHolder} from "@riiul/models"
 
 const router = express.Router()
 

@@ -2,7 +2,7 @@ import {query} from './shared'
 import { Subject } from './models'
 import HttpErrorBadRequest from '../shared/errors/HttpErrorBadRequest'
 import {PoolClient} from 'pg'
-import {DateTime} from "luxon";
+import {DateTime} from "luxon"
 
 const UPDATABLE_FIELDS = ['name', 'active']
 

@@ -2,7 +2,7 @@ import {Subject} from '../database'
 import {addSubject, getPublicSubjects, getSubjects, updateSubject} from './subjectsService'
 import {DateTime} from "luxon"
 import {subjectsRepository} from '@riiul/repository'
-import {findSubjectWithId} from "../database/subjectsRepository";
+import {findSubjectWithId} from "../database/subjectsRepository"
 
 const SUBJECT_1: Subject = {
   id: 1,

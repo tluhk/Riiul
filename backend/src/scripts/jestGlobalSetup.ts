@@ -3,11 +3,10 @@
 import {begin, commit, query, rollback} from '../database/shared'
 import bcrypt from 'bcrypt'
 import {PoolClient} from "pg"
-import {WorkExternalLinkEnum} from "../database/enums";
+import {WorkExternalLinkEnum} from "../database/enums"
 
 const CRAFT_TECHNOLOGIES_AND_DESIGN_ID = 1
 const APPLIED_INFORMATICS_ID = 2
-const TRAFFIC_SAFETY_ID = 3
 const HEALTH_MANAGER_ID = 4
 
 const AUTHORS = [
@@ -191,7 +190,7 @@ async function setWorks(client: PoolClient) {
 			[work.id, work.subjectId, work.title, work.description, work.priority, work.active], client)
 	))
 
-	await query(`SELECT setval(\'portfolios_id_seq\', (SELECT MAX(id) FROM works) + $1)`, [WORKS.length + 1], client)
+	await query(`SELECT setval('portfolios_id_seq', (SELECT MAX(id) FROM works) + $1)`, [WORKS.length + 1], client)
 
 	await Promise.all(WORK_AUTHOR_REF.map(async (data) => query(
 		'INSERT INTO authors_in_work (author_id, work_id) VALUES ($1, $2)',
@@ -222,7 +221,7 @@ async function setFiles(client: PoolClient) {
 		[file.id, file.workId, file.workOrder, file.name, file.extension, file.originalName], client)
 	))
 
-	await query(`SELECT setval(\'files_id_seq\', (SELECT MAX(id) FROM files) + $1)`, [FILES.length + 1], client)
+	await query(`SELECT setval('files_id_seq', (SELECT MAX(id) FROM files) + $1)`, [FILES.length + 1], client)
 }
 
 export default jestGlobalSetup

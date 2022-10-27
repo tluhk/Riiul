@@ -1,5 +1,5 @@
 import {begin, rollback} from './shared'
-import {PoolClient} from "pg";
+import {PoolClient} from "pg"
 import {
 	deleteUser,
 	findUser,
@@ -7,9 +7,9 @@ import {
 	getUsers,
 	saveUser,
 	updateUser
-} from "./usersRepository";
-import {User} from "./models";
-import {DateTime} from "luxon";
+} from "./usersRepository"
+import {User} from "./models"
+import {DateTime} from "luxon"
 
 const BASE_USER_ID = 1
 const BASE_USER_EMAIL = 'default.user@tlu.ee'
@@ -139,7 +139,7 @@ describe('usersRepository', () => {
 				.toThrow('USER_NOT_FOUND')
 		})
 	})
-});
+})
 
 function expectUserToMatchBase(res: User | undefined) {
 	expectUserToMatch(res, BASE_USER_ID, BASE_USER_EMAIL, BASE_USER_NAME)

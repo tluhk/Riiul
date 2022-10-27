@@ -1,4 +1,4 @@
-import {tagsRepository, Tag, User} from "@riiul/repository";
+import {tagsRepository, Tag, User} from "@riiul/repository"
 
 export async function getTags(user?: User): Promise<string[]> {
 	let tags: Tag[]

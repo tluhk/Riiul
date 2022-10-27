@@ -1,5 +1,5 @@
-import {WorkExternalLinkEnum} from "@riiul/repository";
-import {DateTime} from "luxon";
+import {WorkExternalLinkEnum} from "@riiul/repository"
+import {DateTime} from "luxon"
 
 export interface WorkExternalLink {
 	id: number

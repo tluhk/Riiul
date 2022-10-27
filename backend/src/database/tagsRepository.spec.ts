@@ -1,6 +1,6 @@
 import {begin, rollback} from './shared'
 import {PoolClient} from 'pg'
-import {findTagsWithWorkId, getPublicTags, getTags, removeTagFromWork, saveTag} from "./tagsRepository";
+import {findTagsWithWorkId, getPublicTags, getTags, removeTagFromWork, saveTag} from "./tagsRepository"
 
 describe('tagsRepository', () => {
 	let client: PoolClient
@@ -27,7 +27,7 @@ describe('tagsRepository', () => {
 
 			expect(keywords).toHaveLength(1)
 		})
-	});
+	})
 
 	describe('findWithWorksId', () => {
 		it('should return all tags with work id', async () => {

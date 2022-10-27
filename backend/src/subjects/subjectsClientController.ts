@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler'
 import express from 'express'
 import {getPublicSubjects} from './subjectsService'
 import {SubjectsClientResponse} from "./models"
-import {ResponseHolder} from "@riiul/models";
+import {ResponseHolder} from "@riiul/models"
 
 const router = express.Router()
 

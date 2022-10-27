@@ -6,7 +6,7 @@ import {
 	getPublicAuthors,
 	removeAuthorFromWork,
 	saveAuthor
-} from "./authorsRepository";
+} from "./authorsRepository"
 
 const AUTHOR_NAME = 'AUTHORS_REPO_2'
 const AUTHOR_WORK_ID = 2

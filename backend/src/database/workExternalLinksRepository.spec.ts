@@ -4,8 +4,8 @@ import {
 	deleteWorkExternalLink, findVideosWithWorkIds,
 	findWorkExternalLinksWithWorkId,
 	saveWorkExternalLink
-} from "./workExternalLinksRepository";
-import {WorkExternalLinkEnum} from "./enums";
+} from "./workExternalLinksRepository"
+import {WorkExternalLinkEnum} from "./enums"
 
 const VIDEO_EXTERNAL_LINK = {
 	id: 1,
