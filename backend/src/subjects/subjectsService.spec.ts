@@ -75,9 +75,7 @@ describe('subjectsService', () => {
 
   describe('findSubject', () => {
     it('should return subject', async () => {
-      it('should return subjects', async () => {
-        await expect(findSubjectWithId(1)).resolves.toEqual([{ id: 1, name: 'subject 1'}])
-      })
+      await expect(findSubjectWithId(1)).resolves.toEqual(SUBJECT_1)
     })
   })
 
