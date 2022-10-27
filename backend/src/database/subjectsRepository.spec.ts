@@ -17,7 +17,7 @@ describe('subjectsRepository', () => {
 		it('should find the subject', async () => {
 			const subject = await findSubjectWithId(1, client)
 			expect(subject).toBeDefined()
-			expect(subject).toHaveLength(1)
+			expect(subject).toMatchObject({ name: 'Käsitöö tehnoloogiad ja disain', active: true })
 
 		})
 	})
