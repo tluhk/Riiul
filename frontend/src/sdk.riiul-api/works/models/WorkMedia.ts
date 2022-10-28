@@ -1,3 +1,5 @@
+import {Config, ConfigKeys} from '@riiul/shared'
+
 class WorkMedia {
 	static IMAGE = 'IMAGE'
 	static YOUTUBE = 'YOUTUBE'
@@ -41,7 +43,7 @@ class WorkMedia {
 			return `https://www.youtube.com/embed/${this.link}`
 		}
 
-		return `${process.env.REACT_APP_API_URL}/files/${this.link}`
+		return `${Config.get(ConfigKeys.API_URL)}/files/${this.link}`
 	}
 
 	get snapshotSrc(): string {

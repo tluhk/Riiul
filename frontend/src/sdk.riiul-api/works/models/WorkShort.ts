@@ -1,4 +1,5 @@
 import WorkShortResponse from '../types/WorkShortResponse'
+import {Config, ConfigKeys} from '@riiul/shared'
 
 class WorkShort {
 	readonly id: number
@@ -42,7 +43,7 @@ class WorkShort {
 	get imageSrc(): string {
 		if (this.image.includes('http')) return  this.image
 
-		return `${process.env.REACT_APP_API_URL}/files/${this.image}`
+		return `${Config.get(ConfigKeys.API_URL)}/files/${this.image}`
 	}
 }
 

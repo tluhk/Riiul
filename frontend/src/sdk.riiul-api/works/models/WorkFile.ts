@@ -1,4 +1,5 @@
 import {WorkResponseFile} from '../types/WorkResponse'
+import {Config, ConfigKeys} from '@riiul/shared'
 
 class WorkFile {
 	readonly id: number
@@ -37,7 +38,7 @@ class WorkFile {
 
 	get src(): string {
 		if (this._file) return URL.createObjectURL(this._file)
-		return `${process.env.REACT_APP_API_URL}/files/${this.name}`
+		return `${Config.get(ConfigKeys.API_URL)}/files/${this.name}`
 	}
 }
 
