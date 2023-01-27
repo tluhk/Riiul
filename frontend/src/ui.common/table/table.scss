@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+  border-style: hidden;
+  font-size: 15px;
+
+  thead {
+    font-size: 17px !important;
+    text-align: center;
+
+    tr {
+      height: 2.4em;
+    }
+  }
+
+  tr {
+    height: 4.8em;
+    border: #ECECEC solid 1px;
+    &:first-child {
+      border-top: #ECECEC solid 1px;
+    }
+  }
+
+  .table-cell-align-center {
+    text-align: center;
+  }
+
+  td, th {
+    padding: 0 0.6em;
+  }
+}

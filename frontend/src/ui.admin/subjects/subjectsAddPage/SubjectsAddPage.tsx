@@ -9,6 +9,7 @@ import toastPromiseError from '@riiul/service.common/helpers/toastPromiseError'
 import { htmlFormToSubjectUpdateForm } from './mappers/htmlFormToSubjectUpdateForm'
 import {SubjectFormElement} from './models/SubjectFormElement'
 import {htmlFormToSubjectNewForm} from './mappers/htmlFormToSubjectNewForm'
+import {Page} from '@riiul/ui.admin/shared'
 
 export const SubjectsAddPage = React.memo<RouteComponentProps<{ id?: string }>>((props) => {
 	const { id } = props.match.params
@@ -52,9 +53,11 @@ export const SubjectsAddPage = React.memo<RouteComponentProps<{ id?: string }>>(
 
 	if (isLoading || response?.isErrored) return <LoadingIndicator />
 
-	return <SubjectForm
-		save={save}
-		defaultSubject={response?.data}
-		isSaving={isSaving}
-	/>
+	return<Page header={response?.data.name || "Lisa eriala"}>
+		<SubjectForm
+			save={save}
+			defaultSubject={response?.data}
+			isSaving={isSaving}
+		/>
+	</Page>
 })

@@ -8,7 +8,6 @@ import IconButton from '@mui/material/IconButton'
 import Button from '@mui/material/Button'
 import {AppBar, Container, Grid, Toolbar} from '@mui/material'
 import {Login, Logout} from '@mui/icons-material'
-import adminPaths from './adminPaths'
 import defaultPaths from './defaultPaths'
 
 const Header = React.memo(() => {
@@ -17,9 +16,7 @@ const Header = React.memo(() => {
 
 	const isInAdminPath = useMemo(() => pathname.includes('/admin'), [pathname])
 
-	let pathsToRender = defaultPaths
-
-	if (isInAdminPath && isAuthenticated) pathsToRender = adminPaths
+	if (isInAdminPath) return <></>
 
 	return <AppBar position='static' className='header'>
 		<Container maxWidth='xl'>
@@ -29,7 +26,7 @@ const Header = React.memo(() => {
 						<Link to={'/'} className='logo'>
 							<img src={hkLogo} alt='Hakkimise kool' className='logo'/>
 						</Link>
-						{pathsToRender.map(({to, name}) => <Button
+						{defaultPaths.map(({to, name}) => <Button
 							activeClassName='selected'
 							className='navigator-button'
 							component={NavLink}

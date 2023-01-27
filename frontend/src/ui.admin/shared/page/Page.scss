@@ -1,0 +1,34 @@
+@import 'src/colors';
+
+.page {
+    .header {
+        height: 17em;
+    }
+
+    .container {
+        border: $grey-light solid 1px;
+        box-shadow: 0 4px 4px rgba($white-color, 0.25);
+        background-color: $white-color;
+        padding: 0 !important;
+    }
+
+    .navbar {
+        height: 5em;
+        padding: 0 .7em;
+
+        .navigator-button {
+            color: $black-color !important;
+            border-radius: 0 !important;
+            height: 100%;
+
+            &:hover {
+                color: $primary-dark-color !important;
+            }
+        }
+
+        .selected {
+            color: $primary-color !important;
+            border-bottom: $primary-color solid 1px !important;
+        }
+    }
+}

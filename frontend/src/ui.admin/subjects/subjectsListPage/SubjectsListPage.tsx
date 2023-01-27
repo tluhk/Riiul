@@ -3,7 +3,8 @@ import {SubjectsList} from './SubjectsList'
 import LoadingIndicator from '@riiul/ui.common/LoadingIndicator/LoadingIndicator'
 import {toast} from 'react-toastify'
 import {ApiResponse} from '@riiul/sdk.riiul-api'
-import {getAdminSubject, SubjectAdmin, updateSubject} from '@riiul/service.admin'
+import {getAdminSubject, SubjectAdmin} from '@riiul/service.admin'
+import {Page} from '@riiul/ui.admin/shared'
 
 export const SubjectsListPage = React.memo(() => {
 	const [isLoading, setIsLoading] = useState(true)
@@ -22,15 +23,11 @@ export const SubjectsListPage = React.memo(() => {
 		else setIsLoading(false)
 	}, [response])
 
-	async function hideOrShow(ids: number[]) {
-		await Promise.all(ids.map(id => {
-			return updateSubject(id, {active: !response!.data.find(s => s.id === id)!.active})
-		}))
-
-		load()
-	}
-
 	if (isLoading || response === undefined || response?.isErrored) return <LoadingIndicator />
 
-	return <SubjectsList hideOrShow={hideOrShow} subjects={response.data} />
+	return (
+		<Page header='Erialad'>
+			<SubjectsList subjects={response.data} />
+		</Page>
+	)
 })

@@ -7,6 +7,10 @@
   font-size: 14px;
 }
 
+h3 {
+  font-size: 1.4em !important;
+}
+
 .App h2 {
   font-family: Arial, Helvetica, sans-serif;
   color: #525252;
@@ -40,7 +44,4 @@
 .portfolio-preview-image {
   max-height: 14em;
   max-width: 14em;
-}
-a {
-  color: $primary-color !important;
 }
